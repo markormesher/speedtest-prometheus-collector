@@ -1,9 +1,12 @@
-FROM node:16.14.2
+FROM node:16.14.2-alpine
 
 WORKDIR /speedtest-prometheus-collector
 
 COPY ./package.json ./yarn.lock ./
-RUN yarn install
+
+RUN apk add --no-cache --virtual .gyp python3 make g++ \
+  && yarn install \
+  && apk del .gyp
 
 COPY ./tsconfig.json ./
 COPY ./src ./src/
