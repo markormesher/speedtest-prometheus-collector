@@ -12,6 +12,8 @@ COPY ./tsconfig.json ./
 COPY ./src ./src/
 RUN yarn build
 
+# ---
+
 FROM node:16.14.2-alpine
 
 WORKDIR /speedtest-prometheus-collector
