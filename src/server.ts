@@ -10,9 +10,6 @@ function log(msg: string, ...args: unknown[]) {
 // get config
 const testIntervalMs = parseInt(getConfig(ConfigKey.TestIntervalMs)) || 15 * 60 * 1000;
 
-// health check tracking
-let lastSuccessMs = 0;
-
 // string array of metrics, or null if collection is failing
 let latestMeasurements: string[] = null;
 
@@ -27,11 +24,10 @@ async function updateMeasurements(): Promise<void> {
     measurements.push(formatMeasurement("speedtest_ping_latency_ms", tags, result.ping.latency));
     measurements.push(formatMeasurement("speedtest_ping_jitter_ms", tags, result.ping.jitter));
     latestMeasurements = measurements;
-    lastSuccessMs = new Date().getTime();
     log("Metrics updated");
   } catch (e) {
-    log("Could not get speedtest result", e);
-    latestMeasurements = null;
+    log("Failed to take measurements - exiting", e);
+    throw e;
   }
 }
 
@@ -46,17 +42,6 @@ const server = http.createServer((req, res) => {
           "Content-Type": "text/plain",
         })
         .end(latestMeasurements.join("\n"));
-    } else {
-      res.writeHead(500).end();
-    }
-    return;
-  }
-
-  if (req.method == "GET" && req.url == "/health") {
-    const nowMs = new Date().getTime();
-    const sinceLastSuccessMs = nowMs - lastSuccessMs;
-    if (sinceLastSuccessMs <= testIntervalMs * 2) {
-      res.writeHead(200).end();
     } else {
       res.writeHead(500).end();
     }

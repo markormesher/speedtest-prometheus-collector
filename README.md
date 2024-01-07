@@ -39,7 +39,3 @@ services:
     ports:
       - 9030:9030
 ```
-
-## Health Check
-
-A basic health check endpoint is available at `/health` on the port specified. If a successful test has run in the last `2 * TEST_INTERVAL_MS` it will return 200, otherwise 500.
