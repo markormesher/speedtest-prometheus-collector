@@ -43,8 +43,8 @@ func main() {
 
 			l.Info("test finished")
 			testFinished.Increment()
-			downloadBps.Set(result.DownloadBps)
-			uploadBps.Set(result.UploadBps)
+			downloadBps.Set(result.DownloadBits)
+			uploadBps.Set(result.UploadBits)
 			pingLatencyMs.Set(result.PingLatencyMs)
 			pingJitterMs.Set(result.PingJitterMs)
 		}

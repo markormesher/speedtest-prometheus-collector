@@ -7,8 +7,8 @@ import (
 )
 
 type SpeedtestResult struct {
-	DownloadBps   float64
-	UploadBps     float64
+	DownloadBits  float64
+	UploadBits    float64
 	PingLatencyMs float64
 	PingJitterMs  float64
 }
@@ -17,11 +17,11 @@ type SpeedtestRawResult struct {
 	// note: only the fields we care about
 
 	Download struct {
-		Bandwidth float64 `json:"bandwidth"`
+		BandwidthBytes float64 `json:"bandwidth"`
 	} `json:"download"`
 
 	Upload struct {
-		Bandwidth float64 `json:"bandwidth"`
+		BandwidthBytes float64 `json:"bandwidth"`
 	} `json:"upload"`
 
 	Ping struct {
@@ -44,8 +44,8 @@ func runSpeedtest() (SpeedtestResult, error) {
 	}
 
 	return SpeedtestResult{
-		DownloadBps:   raw.Download.Bandwidth,
-		UploadBps:     raw.Upload.Bandwidth,
+		DownloadBits:  raw.Download.BandwidthBytes * 8,
+		UploadBits:    raw.Upload.BandwidthBytes * 8,
 		PingLatencyMs: raw.Ping.Latency,
 		PingJitterMs:  raw.Ping.Jitter,
 	}, nil
