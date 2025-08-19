@@ -18,7 +18,7 @@ func loadSettings() (Settings, error) {
 	}
 	testIntervalMs, err := strconv.Atoi(testIntervalMsStr)
 	if err != nil {
-		return Settings{}, fmt.Errorf("Could not parse test interval as an integer: %w", err)
+		return Settings{}, fmt.Errorf("could not parse test interval as an integer: %w", err)
 	}
 
 	listenPortStr := os.Getenv("LISTEN_PORT")
@@ -27,7 +27,7 @@ func loadSettings() (Settings, error) {
 	}
 	listenPort, err := strconv.Atoi(listenPortStr)
 	if err != nil {
-		return Settings{}, fmt.Errorf("Could not parse listen port as an integer: %w", err)
+		return Settings{}, fmt.Errorf("could not parse listen port as an integer: %w", err)
 	}
 
 	return Settings{
