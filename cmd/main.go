@@ -70,5 +70,8 @@ func httpHandler(res http.ResponseWriter, req *http.Request) {
 
 		m.Write(&sb)
 	}
-	res.Write([]byte(sb.String()))
+	_, err := res.Write([]byte(sb.String()))
+	if err != nil {
+		l.Error("error writing response", "err", err)
+	}
 }
