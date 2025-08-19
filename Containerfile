@@ -10,7 +10,7 @@ RUN go build -o ./build/main ./cmd/...
 
 # ---
 
-FROM debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef as speedtest-dl
+FROM debian:12.11-slim as speedtest-dl
 WORKDIR /
 
 RUN apt update \
@@ -21,7 +21,7 @@ RUN tar xf ookla-speedtest-1.2.0-linux-x86_64.tgz speedtest
 
 # ---
 
-FROM debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef
+FROM debian:12.11-slim
 WORKDIR /app
 
 LABEL image.registry=ghcr.io
