@@ -10,7 +10,7 @@ RUN go build -o ./build/main ./cmd/...
 
 # ---
 
-FROM debian:13.2-slim@sha256:e711a7b30ec1261130d0a121050b4ed81d7fb28aeabcf4ea0c7876d4e9f5aca2 as speedtest-dl
+FROM debian:13.2-slim@sha256:91e29de1e4e20f771e97d452c8fa6370716ca4044febbec4838366d459963801 as speedtest-dl
 WORKDIR /
 
 RUN apt update \
@@ -21,7 +21,7 @@ RUN tar xf ookla-speedtest-1.2.0-linux-x86_64.tgz speedtest
 
 # ---
 
-FROM debian:13.2-slim@sha256:e711a7b30ec1261130d0a121050b4ed81d7fb28aeabcf4ea0c7876d4e9f5aca2
+FROM debian:13.2-slim@sha256:91e29de1e4e20f771e97d452c8fa6370716ca4044febbec4838366d459963801
 WORKDIR /app
 
 LABEL image.registry=ghcr.io
