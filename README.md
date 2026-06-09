@@ -1,4 +1,3 @@
-![CircleCI](https://img.shields.io/circleci/build/github/markormesher/speedtest-prometheus-collector)
 
 # Speedtest.net Prometheus Collector
 
