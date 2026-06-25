@@ -10,7 +10,7 @@ RUN go build -o ./build/main ./cmd/...
 
 # ---
 
-FROM docker.io/debian:13.5-slim@sha256:4e401d95de7083948053197a9c3913343cd06b706bf15eb6a0c3ccd26f436a0e as speedtest-dl
+FROM docker.io/debian:13.5-slim@sha256:28de0877c2189802884ccd20f15ee41c203573bd87bb6b883f5f46362d24c5c2 as speedtest-dl
 WORKDIR /
 
 RUN apt update \
@@ -21,7 +21,7 @@ RUN tar xf ookla-speedtest-1.2.0-linux-x86_64.tgz speedtest
 
 # ---
 
-FROM docker.io/debian:13.5-slim@sha256:4e401d95de7083948053197a9c3913343cd06b706bf15eb6a0c3ccd26f436a0e
+FROM docker.io/debian:13.5-slim@sha256:28de0877c2189802884ccd20f15ee41c203573bd87bb6b883f5f46362d24c5c2
 WORKDIR /app
 
 RUN apt update \
