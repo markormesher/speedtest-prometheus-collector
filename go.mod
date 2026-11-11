@@ -2,7 +2,7 @@ module github.com/markormesher/speedtest-prometheus-collector
 
 go 1.26.0
 
-toolchain go1.27.3
+toolchain go1.27.4
 
 tool (
 	github.com/kisielk/errcheck
